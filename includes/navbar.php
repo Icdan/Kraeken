@@ -9,7 +9,7 @@
                 <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Zenders</a>
+                <a class="nav-link" href="zenders.php">Zenders</a>
             </li>
             <?php
                 if(isset($_SESSION['loggedin'])) {

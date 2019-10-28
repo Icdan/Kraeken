@@ -7,7 +7,7 @@ if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $loginQuery = mysqli_query($conn, "SELECT * FROM `medewerker` WHERE username = '$username' && password = '$password'");
+    $loginQuery = mysqli_query($conn, "SELECT * FROM medewerker WHERE username = '$username' && wachtwoord = '$password'");
 
     if ($loginQuery) {
         $loginResult = mysqli_num_rows($loginQuery);
@@ -18,13 +18,14 @@ if (isset($_POST['login'])) {
             $_SESSION['email'] = $row['email'];
             $_SESSION['foto_url']= $row['foto_url'];
             $_SESSION['idmedewerker'] = $row['idmedewerker'];
+            $_SESSION['username'] = $row['username'];
             $_SESSION['loggedin'] = true;
             header("Location: index.php");
         } elseif ($_POST) {
-            echo "Please enter a valid username or password";
+            echo "U heeft een foutieve naam of wachtwoord ingevoerd, probeer het nogmaals";
         }
     } else {
-        echo "bah";
+        echo "This is just a test to show where the login process fails";
     }
 }
 
@@ -40,7 +41,7 @@ if (isset($_POST['login'])) {
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-12">
             <form action="" method="post">
                 <div class="form-group">
                     <label>Username</label>
