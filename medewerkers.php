@@ -4,7 +4,7 @@ session_start();
 //Connect to database
 include "db/db_connection.php";
 //If a non-admin tries to get to the page they'll be redirected back to the homepage
-if (!$_SESSION['username'] == 'ljansen') {
+if ($_SESSION['username'] !== 'ljansen') {
     header("Location: index.php");
 }
 ?>
@@ -37,9 +37,10 @@ include "includes/navbar.php";
                 echo $row['voornaam'] . " " . $row['tussenvoegsel'] . " " . $row['achternaam'] . "<br>";
             }
         }
-
-
         ?>
+    </div>
+    <div class="row pt-5">
+        <a href="mw-toevoegen.php">Medewerker toevoegen</a>
     </div>
 </div>
 <!-- Javascript files -->
