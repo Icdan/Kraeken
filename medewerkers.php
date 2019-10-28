@@ -35,8 +35,14 @@ include "includes/navbar.php";
             $mwAmount = mysqli_num_rows($mwQuery);
             for ($count = 1; $count <= $mwAmount; $count++) {
                 $row = mysqli_fetch_assoc($mwQuery);
-                echo "<tr><td>" . $row['voornaam'] . " " . $row['tussenvoegsel'] . " " . $row['achternaam'] . "</td><td><form method='post' action='mw-wijzigen.php'><input type='hidden' name='idmedewerker' value='" . $row['idmedewerker'] . "'><input type='submit' value='Wijzig' name='wijzigen'</td></form></tr>";
+                echo "<tr><td>" . $row['voornaam'] . " " . $row['tussenvoegsel'] . " " . $row['achternaam'] . "</td><td><form method='post' action='mw-wijzigen.php'><input type='hidden' name='idmedewerker' value='" . $row['idmedewerker'] . "'><input type='submit' value='Wijzig' name='wijzigen'></form></td><td><form method='post'><input type='hidden' name='idmedewerker' value='" . $row['idmedewerker'] . "'><input type='submit' value='Verwijder' name='verwijder'></form></td></tr>";
             }
+        }
+
+        if (isset($_POST['verwijder'])) {
+            $id = $_POST['idmedewerker'];
+            mysqli_query($conn, "DELETE FROM medewerker WHERE `idmedewerker` = '$id'");
+            header("Location: ");
         }
 
         ?>
