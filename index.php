@@ -3,10 +3,6 @@
 session_start();
 //Connect to database
 include "db/db_connection.php";
-//If user isn't logged in they'll be redirected to the log-in page.
-if (!$_SESSION['loggedin']) {
-    header("Location: login.php");
-}
 ?>
 <!doctype html>
 <html lang="en">
@@ -25,12 +21,16 @@ if (!$_SESSION['loggedin']) {
 <?php
 include "includes/navbar.php";
 ?>
-<div class="container">
+<div class="container" style="padding-top: 10%">
     <div class="row">
-        <div class="col text-center">
-            <?php
-                echo "<p class='text-center'>Hello " . $_SESSION['name'];
-            ?>
+        <div class="col-4 text-center">
+            <img src="images/radiodj1.jpg" alt="dj1" width="400">
+        </div>
+        <div class="col-4 text-center">
+            <img src="images/radiodj2.jpg" alt="dj2" width="400">
+        </div>
+        <div class="col-4 text-center">
+            <img src="images/radiodj3.jpg" alt="dj3" width="400">
         </div>
     </div>
 </div>
