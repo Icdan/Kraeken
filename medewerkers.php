@@ -3,6 +3,10 @@
 session_start();
 //Connect to database
 include "db/db_connection.php";
+//If a non-admin tries to get to the page they'll be redirected back to the homepage
+if (!$_SESSION['username'] == 'ljansen') {
+    header("Location: index.php");
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -15,7 +19,7 @@ include "db/db_connection.php";
     <?php
     include "includes/header.php";
     ?>
-    <title>Zenders</title>
+    <title>Medewerkers</title>
 </head>
 <body>
 <?php
@@ -24,15 +28,15 @@ include "includes/navbar.php";
 <div class="container" style="padding-top: 10%">
     <div class="row">
         <?php
-            $zenderQuery = mysqli_query($conn, "SELECT * FROM zender");
+        $mwQuery = mysqli_query($conn, "SELECT * FROM medewerker");
 
-            if ($zenderQuery) {
-                $zenderAmount = mysqli_num_rows($zenderQuery);
-                for ($count = 1; $count <= $zenderAmount; $count++) {
-                    $row = mysqli_fetch_assoc($zenderQuery);
-                    echo "<div class='zender col-4'>" . $row['naam'] . "<br>" . $row['omschrijving'] . "<br><a href='#'>programma overzicht</a></div>";
-                }
+        if ($mwQuery) {
+            $mwAmount = mysqli_num_rows($mwQuery);
+            for ($count = 1; $count <= $mwAmount; $count++) {
+                $row = mysqli_fetch_assoc($mwQuery);
+                echo $row['voornaam'] . " " . $row['tussenvoegsel'] . " " . $row['achternaam'] . "<br>";
             }
+        }
 
 
         ?>
