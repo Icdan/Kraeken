@@ -65,11 +65,10 @@ include "includes/navbar.php";
                 $voornaam = $_POST['voornaam'];
                 $tssnvgsl = $_POST['tssnvgsl'];
                 $achternaam = $_POST['achternaam'];
-                $wachtwoord = $_POST['wachtwoord'];
                 $foto_url = $_POST['foto_url'];
                 $idmedewerker = $_POST['idmedewerker'];
 
-                mysqli_query($conn, "UPDATE medewerker set `username` = '$username', `voornaam` = '$voornaam', `tussenvoegsel` = '$tssnvgsl', `achternaam` = '$achternaam', `wachtwoord` = '$wachtwoord', `foto_url` = '$foto_url' WHERE idmedewerker = '$idmedewerker'");
+                mysqli_query($conn, "UPDATE medewerker set `username` = '$username', `voornaam` = '$voornaam', `tussenvoegsel` = '$tssnvgsl', `achternaam` = '$achternaam', `foto_url` = '$foto_url' WHERE idmedewerker = '$idmedewerker'");
                 header("Location: medewerkers.php");
             }
         }
