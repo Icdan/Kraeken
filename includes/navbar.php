@@ -13,6 +13,11 @@
                 <a class="nav-link" href="zenders.php">Zenders</a>
             </li>
             <?php
+            if (isset($_SESSION['loggedin'])) {
+                echo "<li class=nav-item'>
+                        <a class='nav-link' href='playlist-beheren.php'>Playlist beheren</a>
+                        </li>";
+            }
             if (isset($_SESSION['username'])) {
                 if ($_SESSION['username'] == 'ljansen') {
                     echo "<li class=nav-item'>

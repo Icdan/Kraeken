@@ -39,6 +39,9 @@ if (isset($_POST['login'])) {
     <title>Log-in page</title>
 </head>
 <body>
+<?php
+include "includes/navbar.php";
+?>
 <div class="container">
     <div class="row">
         <div class="col-12">
