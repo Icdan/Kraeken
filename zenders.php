@@ -24,17 +24,19 @@ include "includes/navbar.php";
 <div class="container" style="padding-top: 10%">
     <div class="row">
         <?php
-            $zenderQuery = mysqli_query($conn, "SELECT * FROM zender");
+        $zenderQuery = mysqli_query($conn, "SELECT * FROM zender");
 
-            if ($zenderQuery) {
-                $zenderAmount = mysqli_num_rows($zenderQuery);
-                for ($count = 1; $count <= $zenderAmount; $count++) {
-                    $row = mysqli_fetch_assoc($zenderQuery);
-                    echo "<div class='zender col-4'>" . $row['naam'] . "<br>" . $row['omschrijving'] . "<br><a href='#'>programma overzicht</a></div>";
+        if ($zenderQuery) {
+            $zenderAmount = mysqli_num_rows($zenderQuery);
+            for ($count = 1; $count <= $zenderAmount; $count++) {
+                $row = mysqli_fetch_assoc($zenderQuery);
+                echo "<div class='zender col-4'>" . $row['naam'] . "<br>" . $row['omschrijving'] . "<br><a href='#'>programma overzicht</a>";
+                if (isset($_SESSION['loggedin'])) {
+                    echo "<br><button class='btn btn-primary'>Wijzig</button><button class='btn btn-danger'>Verwijder</button>";
                 }
+                echo "</div>";
             }
-
-
+        }
         ?>
     </div>
 </div>
