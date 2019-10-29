@@ -18,14 +18,10 @@
                         <a class='nav-link' href='playlist-beheren.php'>Playlist beheren</a>
                         </li>";
             }
-            if (isset($_SESSION['username'])) {
-                if ($_SESSION['username'] == 'ljansen') {
-                    echo "<li class=nav-item'>
-                        <a class='nav-link' href='medewerkers.php'>Medewerkers</a>
-                        </li>";
-                }
-            }
             ?>
+            <li class=nav-item'>
+                <a class='nav-link' href='medewerkers.php'>Medewerkers</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Contact</a>
             </li>

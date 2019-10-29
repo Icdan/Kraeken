@@ -3,10 +3,6 @@
 session_start();
 //Connect to database
 include "db/db_connection.php";
-//If a non-admin tries to get to the page they'll be redirected back to the homepage
-if ($_SESSION['username'] !== 'ljansen') {
-    header("Location: index.php");
-}
 ?>
 <!doctype html>
 <html lang="en">
@@ -28,14 +24,23 @@ include "includes/navbar.php";
 <div class="container" style="padding-top: 10%">
     <div class="row">
         <table>
-        <?php
+            <?php
         $mwQuery = mysqli_query($conn, "SELECT * FROM medewerker");
 
         if ($mwQuery) {
             $mwAmount = mysqli_num_rows($mwQuery);
             for ($count = 1; $count <= $mwAmount; $count++) {
                 $row = mysqli_fetch_assoc($mwQuery);
-                echo "<tr><td>" . $row['voornaam'] . " " . $row['tussenvoegsel'] . " " . $row['achternaam'] . "</td><td><form method='post' action='mw-wijzigen.php'><input type='hidden' name='idmedewerker' value='" . $row['idmedewerker'] . "'><input type='submit' value='Wijzig' name='wijzigen'></form></td><td><form method='post'><input type='hidden' name='idmedewerker' value='" . $row['idmedewerker'] . "'><input type='submit' value='Verwijder' name='verwijder'></form></td></tr>";
+                echo "<tr><td>" . $row['voornaam'] . " " . $row['tussenvoegsel'] . " " . $row['achternaam'] . "</td>";
+
+                if (isset($_SESSION['username'])) {
+                    if ($_SESSION['username'] == 'ljansen'){
+                    echo "
+                         <td><form method='post' action='mw-wijzigen.php'><input type='hidden' name='idmedewerker' value='" . $row['idmedewerker'] . "'><input type='submit' value='Wijzig' name='wijzigen'></form></td>
+                        <td><form method='post'><input type='hidden' name='idmedewerker' value='" . $row['idmedewerker'] . "'><input type='submit' value='Verwijder' name='verwijder'></form>";
+                    }
+                }
+                echo "</td></tr>";
             }
         }
 
