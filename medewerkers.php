@@ -47,9 +47,9 @@ include "includes/navbar.php";
         if (isset($_POST['verwijder'])) {
             $id = $_POST['idmedewerker'];
             mysqli_query($conn, "DELETE FROM medewerker WHERE `idmedewerker` = '$id'");
-            header("Location: ");
+            header('Location: '.$_SERVER['PHP_SELF']);
+            die;
         }
-
         ?>
         </table>
     </div>
