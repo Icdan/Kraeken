@@ -26,7 +26,7 @@ include "includes/navbar.php";
         <div class="col">
             <?php
             $detailQuery = mysqli_query($conn, "
-SELECT programma.naam, DATE_FORMAT(programma.datum, \"%d %M %Y\") as `datum`, TIME_FORMAT(programma.begintijd, \"%H:%i\") as `begintijd`, TIME_FORMAT(programma.eindtijd, \"%H:%i\") as `eindtijd`, medewerker.voornaam, medewerker.tussenvoegsel, medewerker.achternaam, zender.zendernaam, artiest.artiestnaam, nummer.titel, TIME_FORMAT(nummer.duur, \"%H:%i:%s\") as `duur`, TIME_FORMAT(SEC_TO_TIME(SUM(TIME_TO_SEC(nummer.duur))), \"%H:%i:%s\") as `totaal` FROM programma 
+SELECT programma.naam, DATE_FORMAT(programma.datum, \"%d %M %Y\") as `datum`, TIME_FORMAT(programma.begintijd, \"%H:%i\") as `begintijd`, TIME_FORMAT(programma.eindtijd, \"%H:%i\") as `eindtijd`, medewerker.voornaam, medewerker.tussenvoegsel, medewerker.achternaam, zender.naam as zendernaam, artiest.naam as artiestnaam, nummer.titel, TIME_FORMAT(nummer.duur, \"%H:%i:%s\") as `duur`, TIME_FORMAT(SEC_TO_TIME(SUM(TIME_TO_SEC(nummer.duur))), \"%H:%i:%s\") as `totaal` FROM programma 
 INNER JOIN zender ON programma.zender_idzender = zender.idzender 
 INNER JOIN programma_has_nummer ON programma.idprogramma = programma_has_nummer.programma_idprogramma 
 INNER JOIN nummer ON programma_has_nummer.nummer_idnummer = nummer.idnummer
@@ -55,7 +55,7 @@ WHERE idprogramma = 3;
 
             echo "<table>";
             $detailQuery2 = mysqli_query($conn, "
-SELECT programma.naam, programma.datum, TIME_FORMAT(programma.begintijd, \"%H:%i\") as `begintijd`, TIME_FORMAT(programma.eindtijd, \"%H:%i\") as `eindtijd`, medewerker.voornaam, medewerker.tussenvoegsel, medewerker.achternaam, zender.zendernaam, artiest.artiestnaam, nummer.titel, TIME_FORMAT(nummer.duur, \"%H:%i:%s\") as `duur` FROM programma 
+SELECT programma.naam, programma.datum, TIME_FORMAT(programma.begintijd, \"%H:%i\") as `begintijd`, TIME_FORMAT(programma.eindtijd, \"%H:%i\") as `eindtijd`, medewerker.voornaam, medewerker.tussenvoegsel, medewerker.achternaam, zender.naam as zendernaam, artiest.naam as artiestnaam, nummer.titel, TIME_FORMAT(nummer.duur, \"%H:%i:%s\") as `duur` FROM programma 
 INNER JOIN zender ON programma.zender_idzender = zender.idzender 
 INNER JOIN programma_has_nummer ON programma.idprogramma = programma_has_nummer.programma_idprogramma 
 INNER JOIN nummer ON programma_has_nummer.nummer_idnummer = nummer.idnummer
